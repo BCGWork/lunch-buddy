@@ -137,15 +137,10 @@ def query_api(term, location):
     for i in range(SEARCH_LIMIT):
       business_id = businesses[i]['id']
       response = get_business(business_id)
-      address = ""
-      for j in range(len(response["location"]["display_address"])):
-        if j == len(response["location"]["display_address"]) - 1:
-          address += response["location"]["display_address"][j]
-        else:
-          address += response["location"]["display_address"][j] + ", "
+      address = response["location"]["display_address"][0] + " Boston MA"
       output = {}
       output["name"] = response["name"]
-      output["display_address"] = address
+      output["address"] = address
       FINAL_OUTPUT.append(output)
 
     with open("restaurant_data.txt", "w") as f:
