@@ -19,7 +19,7 @@ shinyServer(function(input, output) {
     cat(paste0("How about going to <a href=http://maps.google.com/?q=", gsub(" ", "+", paste(restaurant$name[resInd], as.character(restaurant$address[resInd]))), " target='_blank'>", restaurant$name[resInd], "</a> with ", paste(buddyList, collapse = ", "), "?"))
     cat("<br/>")
     cat("<br/>")
-    cat(paste0("<a href='mailto:", mailList, "?Subject=You are my lunch buddy today!&body=Hey! Wanna grab lunch at ", as.character(restaurant$name[resInd]), " with me?'>Email buddies?</a>"))
+    cat(paste0("<a href='mailto:", mailList, "?Subject=You are my lunch buddy today!&body=Hey! Wanna grab lunch at ", gsub("'", "", as.character(restaurant$name[resInd])), " with me?'>Email buddies?</a>"))
     cat("<br/>")
     cat("<br/>")
     cat("Don't feel like hanging out with them today? Click <b>Try Again</b> to get the cooler kids!")
