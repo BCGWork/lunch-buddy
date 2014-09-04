@@ -1,12 +1,14 @@
 library(shiny)
+buddy <- read.csv("data/member.csv")
+numBuddy <- nrow(buddy) - 1
 
 shinyUI(fluidPage(
   titlePanel("Lunch Buddy"),
   
   sidebarLayout(
     sidebarPanel(
-      sliderInput("num", label = "Number of buddies: ", value = 1, min = 1, max = 29),
-      br(),
+      selectInput("user", label="Who are you?", as.character(buddy$nickname)[order(as.character(buddy$nickname))]),
+      sliderInput("num", label="Number of buddies:", min=1, max=numBuddy, value=1, step=1),
       br(),
       actionButton("find", "Try again")
     ),

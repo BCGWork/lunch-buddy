@@ -2,18 +2,22 @@ library(shiny)
 library(rjson)
 
 buddy <- read.csv("data/member.csv")
+buddy$id <- 1:nrow(buddy)
+numBuddy <- nrow(buddy) - 1
+
 placeJSON <- fromJSON(file = "data/restaurant_data.txt")
 place <- lapply(placeJSON, function(x) {data.frame("name"=x$name, "address"=x$address)})
 restaurant <- do.call(rbind, place)
-numBuddy <- nrow(buddy)
 numPlace <- nrow(restaurant)
 
 shinyServer(function(input, output) {
-  output$result <- renderPrint({    
+  output$result <- renderPrint({
     input$find
-    budInd <- sample(1:numBuddy, input$num)
+    
+    budPool <- subset(buddy$id, buddy$nickname!=input$user)
+    budInd <- sample(budPool, input$num)
     resInd <- sample(1:20, 1)
-    buddyList <- as.character(buddy[budInd,]$nickname)
+    buddyList <- as.character(buddy[budInd,]$nickname)[order(as.character(buddy[budInd,]$nickname))]
     mailList <- paste(paste0(buddy[budInd,]$lastname, ".", buddy[budInd,]$firstname, "@bcg.com"), collapse = ",")
     
     cat(paste0("How about going to <a href=http://maps.google.com/?q=", gsub(" ", "+", paste(restaurant$name[resInd], as.character(restaurant$address[resInd]))), " target='_blank'>", restaurant$name[resInd], "</a> with ", paste(buddyList, collapse = ", "), "?"))
