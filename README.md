@@ -1,7 +1,7 @@
 lunch-buddy
 ===========
 
-Shiny app looking for lunch suggestions around BKA office
+An interactive app to look for lunch suggestions around BKA office.
 
 <ol>
 <li>Restaurant data is a daily feed from Yelp, leveraging the <a href="https://github.com/Yelp/yelp-api/tree/master/v2/python" target="_blank">Yelp API</a>.</li>
