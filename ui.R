@@ -17,7 +17,11 @@ shinyUI(fluidPage(
       h4(paste0("Greetings! Look for lunch suggestions on ", Sys.Date(), "?")),
       br(),
       br(),
-      htmlOutput("result")
+      htmlOutput("result"),
+      br(),
+      plotOutput("static_map", height="640px"),
+      br(),
+      htmlOutput("email")
     )
   )
 ))

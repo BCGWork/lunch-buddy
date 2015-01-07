@@ -1,29 +1,67 @@
 library(shiny)
 library(rjson)
+library(ggmap)
 
 buddy <- read.csv("data/member.csv")
 buddy$id <- 1:nrow(buddy)
-numBuddy <- nrow(buddy) - 1
+kNumBuddy <- nrow(buddy) - 1
 
-placeJSON <- fromJSON(file = "data/restaurant_data.txt")
-place <- lapply(placeJSON, function(x) {data.frame("name"=x$name, "address"=x$address)})
+place.json <- fromJSON(file = "data/restaurant_data.txt")
+place <- lapply(place.json, function(x) {data.frame("name"=x$name, "address"=x$address)})
 restaurant <- do.call(rbind, place)
-numPlace <- nrow(restaurant)
+kNumPlace <- nrow(restaurant)
+
+office <- "53 State Street Boston MA"
+office.gc <- geocode(office)
 
 shinyServer(function(input, output) {
-  output$result <- renderPrint({
+  data.object <- reactive({
     input$find
+    isolate({
+      buddy.pool <- subset(buddy$id, buddy$nickname!=input$user)
+      kBuddyInd <- sample(buddy.pool, input$num)
+      kRestInd <- sample(1:kNumPlace, 1)
+      buddy.list <- as.character(buddy[kBuddyInd, ]$nickname)[order(as.character(buddy[kBuddyInd, ]$nickname))]
+      email.list <- paste(paste0(buddy[kBuddyInd, ]$lastname, ".", buddy[kBuddyInd, ]$firstname, "@bcg.com"), collapse = ", ")
+      return(list("kRestInd" = kRestInd, "buddy.list" = buddy.list, "email.list" = email.list))
+    })
+  })
+  
+  output$result <- renderPrint({
+    data <- data.object()
+    kRestInd <- data$kRestInd
+    buddy.list <- data$buddy.list
     
-    budPool <- subset(buddy$id, buddy$nickname!=input$user)
-    budInd <- sample(budPool, input$num)
-    resInd <- sample(1:20, 1)
-    buddyList <- as.character(buddy[budInd,]$nickname)[order(as.character(buddy[budInd,]$nickname))]
-    mailList <- paste(paste0(buddy[budInd,]$lastname, ".", buddy[budInd,]$firstname, "@bcg.com"), collapse = ",")
+    cat(
+      paste0(
+        "How about going to <a href=https://www.google.com/maps/dir/The+Boston+Consulting+Group,+53+State+St,+Boston,+MA+02109-2802,+United+States/",
+        gsub(" ", "+", paste(restaurant$name[kRestInd], as.character(restaurant$address[kRestInd]))),
+        " target='_blank'>",
+        restaurant$name[kRestInd],
+        "</a> with ",
+        paste(buddy.list, collapse = ", "),
+        "?"
+      )
+    )
+  })
+  
+  output$static_map <- renderPlot({
+    data <- data.object()
+    kRestInd <- data$kRestInd
     
-    cat(paste0("How about going to <a href=http://maps.google.com/?q=", gsub(" ", "+", paste(restaurant$name[resInd], as.character(restaurant$address[resInd]))), " target='_blank'>", restaurant$name[resInd], "</a> with ", paste(buddyList, collapse = ", "), "?"))
-    cat("<br/>")
-    cat("<br/>")
-    cat(paste0("<a href='mailto:", mailList, "?Subject=You are my lunch buddy today!&body=Hey! Wanna grab lunch at ", gsub("'", "", as.character(restaurant$name[resInd])), " with me?'>Email buddies?</a>"))
+    restaurant.gc <- geocode(as.character(restaurant$address[kRestInd]))
+    gc.df <- data.frame(rbind(office.gc, restaurant.gc))
+    gc.df$type <- c("Office", as.character(restaurant$name[kRestInd]))
+    ggmap(get_googlemap(office, zoom=15, marker=gc.df[, 1:2])) +
+      geom_text(aes(x=lon, y=lat, label=type), data=gc.df, colour="red", vjust=1)
+  }, width=640)
+  
+  output$email <- renderPrint({
+    data <- data.object()
+    kRestInd <- data$kRestInd
+    email.list <- data$email.list
+    
+    cat(paste0("<a href='mailto:", email.list, "?Subject=You are my lunch buddy today!&body=Hey! Wanna grab lunch at ", gsub("'", "", as.character(restaurant$name[kRestInd])), " with me?'>Email buddies?</a>"))
     cat("<br/>")
     cat("<br/>")
     cat("Don't feel like hanging out with them today? Click <b>Try Again</b> to get the cooler kids!")

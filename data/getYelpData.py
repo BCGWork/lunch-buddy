@@ -35,7 +35,7 @@ DEFAULT_TERM = 'lunch'
 DEFAULT_LOCATION = '53 State Street, Boston MA'
 SEARCH_LIMIT = 20
 SORT_BY = 2
-RADIUS = 600
+RADIUS = 300
 SEARCH_PATH = '/v2/search/'
 BUSINESS_PATH = '/v2/business/'
 
