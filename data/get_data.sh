@@ -1,2 +1,2 @@
-cd /srv/shiny-server/lunch-buddy/data/
+cd /srv/shiny-server/lunch-buddy/data
 python get_restaurant.py
