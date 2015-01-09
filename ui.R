@@ -18,7 +18,7 @@ shinyUI(
           ),
           
           mainPanel(
-            tags$body(tags$script(src="www/lb.js")),
+            tags$body(tags$script(type="text/javascript", src="lb.js")),
             h4(paste0("Greetings! Look for lunch suggestions on ", Sys.Date(), "?")),
             br(),
             br(),
