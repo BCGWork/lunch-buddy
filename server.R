@@ -14,7 +14,7 @@ shinyServer(function(input, output) {
     input$find
     isolate({
       place.json <- fromJSON(file = "data/restaurant_data.txt")
-      place <- lapply(place.json, function(x) {data.frame("name"=x$name, "address"=x$address)})
+      place <- lapply(place.json, function(x) {data.frame("name"=x$name, "address"=x$address, "lat"=x$lat, "long"=x$long)})
       restaurant <- do.call(rbind, place)
       kNumPlace <- nrow(restaurant)
       
@@ -51,10 +51,10 @@ shinyServer(function(input, output) {
     kRestInd <- data$kRestInd
     restaurant <- data$restaurant
     
-    restaurant.gc <- geocode(as.character(restaurant$address[kRestInd]))
+    restaurant.gc <- c(restaurant$long[kRestInd], restaurant$lat[kRestInd])
     gc.df <- data.frame(rbind(office.gc, restaurant.gc))
     gc.df$type <- c("Office", as.character(restaurant$name[kRestInd]))
-    ggmap(get_googlemap(office, zoom=15, marker=gc.df[, 1:2])) +
+    ggmap(get_googlemap(office, zoom=16, marker=gc.df[, 1:2])) +
       geom_text(aes(x=lon, y=lat, label=type), data=gc.df, colour="red", vjust=1)
   }, width=640)
   
