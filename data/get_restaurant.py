@@ -4,9 +4,9 @@ import os
 import requests
 from requests_oauthlib import OAuth1
 
-
-CUR_DIR = os.getcwd()
-f = csv.reader(open(os.path.abspath(os.path.join(CUR_DIR, "yelp_key.txt")), "r"))
+# CUR_DIR = os.getcwd()
+# f = csv.reader(open(os.path.abspath(os.path.join(CUR_DIR, "yelp_key.txt")), "r"))
+f = csv.reader(open("yelp_key.txt", "r"))
 data = open("restaurant_data.txt", "w")
 data_json = []
 KEY = {}
