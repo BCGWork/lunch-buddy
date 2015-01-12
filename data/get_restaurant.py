@@ -22,11 +22,14 @@ output = r.json()["businesses"]
 
 for i in range(len(output)):
 	rest_object = output[i]
+	
 	name = rest_object["name"]
 	address = ", ".join(rest_object["location"]["display_address"])
 	lat = rest_object["location"]["coordinate"]["latitude"]
 	long = rest_object["location"]["coordinate"]["longitude"]
-	out = {"name": name, "address": address, "lat": lat, "long": long}
+	url = rest_object["url"]
+	
+	out = {"name": name, "address": address, "lat": lat, "long": long, "url": url}
 	data_json.append(out)
 	print name, "recorded."
 

@@ -14,7 +14,7 @@ shinyUI(
             selectInput("user", label="Who are you?", as.character(buddy$nickname)[order(as.character(buddy$nickname))]),
             sliderInput("num", label="Number of buddies:", min=1, max=numBuddy, value=1, step=1),
             br(),
-            actionButton("find", "Try again")
+            actionButton("find", "Find Buddy")
           ),
           
           mainPanel(
@@ -23,12 +23,14 @@ shinyUI(
             br(),
             br(),
             htmlOutput("result"),
-            plotOutput("static_map", height="640px"),
-            htmlOutput("email")
+            br(),
+            htmlOutput("email"),
+            br(),
+            htmlOutput("direction")
           )
         )
       ),
-      tabPanel("About")
+      tabPanel("Contact")
     )
   )
 )
