@@ -17,7 +17,19 @@ shinyServer(function(input, output) {
     
     isolate({
       place.json <- fromJSON(file = "data/restaurant_data.txt")
-      place <- lapply(place.json, function(x) {data.frame("name"=x$name, "address"=x$address, "lat"=x$lat, "long"=x$long, "url"=x$url)})
+      place <- lapply(
+        place.json,
+        function(x) {
+          data.frame(
+            "name"=x$name,
+            "address"=x$address,
+            "lat"=x$lat,
+            "long"=x$long,
+            "url"=x$url,
+            "rating"=x$rating
+          )
+        }
+      )
       restaurant <- do.call(rbind, place)
       kNumPlace <- nrow(restaurant)
       
@@ -45,6 +57,12 @@ shinyServer(function(input, output) {
         "</a> with ",
         paste(buddy.list, collapse = ", "),
         "?"
+      ),
+      "<br />",
+      paste0(
+        "<img src=",
+        restaurant$rating[kRestInd],
+        " />"
       )
     )
   })

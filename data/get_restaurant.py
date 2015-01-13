@@ -28,8 +28,9 @@ for i in range(len(output)):
 	lat = rest_object["location"]["coordinate"]["latitude"]
 	long = rest_object["location"]["coordinate"]["longitude"]
 	url = rest_object["url"]
+	rating = rest_object["rating_img_url"]
 	
-	out = {"name": name, "address": address, "lat": lat, "long": long, "url": url}
+	out = {"name": name, "address": address, "lat": lat, "long": long, "url": url, "rating": rating}
 	data_json.append(out)
 	print name, "recorded."
 
