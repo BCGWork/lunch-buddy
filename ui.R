@@ -18,6 +18,7 @@ shinyUI(
           ),
           
           mainPanel(
+            tags$head(includeScript("www/google_analytics.js")),
             tags$body(tags$script(type="text/javascript", src="lb.js")),
             h4(paste0("Greetings! Look for lunch suggestions on ", Sys.Date(), "?")),
             br(),
