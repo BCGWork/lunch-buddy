@@ -37,7 +37,7 @@ shinyServer(function(input, output) {
       kBuddyInd <- sample(buddy.pool, input$num)
       kRestInd <- sample(1:kNumPlace, 1)
       buddy.list <- as.character(buddy[kBuddyInd, ]$nickname)[order(as.character(buddy[kBuddyInd, ]$nickname))]
-      email.list <- paste(paste0(buddy[kBuddyInd, ]$lastname, ".", buddy[kBuddyInd, ]$firstname, "@bcg.com"), collapse = ", ")
+      email.list <- paste0(as.character(buddy[kBuddyInd, ]$email), collapse="; ")
       return(list("kRestInd" = kRestInd, "buddy.list" = buddy.list, "email.list" = email.list, "restaurant" = restaurant))
     })
   })

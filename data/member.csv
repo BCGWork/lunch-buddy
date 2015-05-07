@@ -1,33 +1,41 @@
-lastname,firstname,nickname
-Allen,Greg,Greg A.
-Benjamin,Max,Max B.
-Brown,Christopher,Christopher B.
-Chu,Michael,Michael C.
-Colon,Jeremy,Jeremy C.
-Consiglio,Davide,Davide C.
-Cui,Bo,Bo C.
-Dinsmore,Thomas,Thomas D.
-Dixon,Patricia,Patricia D.
-Gurga,Dawid,Dawid G.
-Hua,Guangying,Guangying H.
-Jamrich,Jan,Jan J.
-Kattamuri,Srinivas,Srinivas K.
-Keezell,John,John K.
-Kreider,Tyler,Tyler K.
-Kurtzman,Mattew,Mattew K.
-Lagueux,Kerry,Kerry L.
-Lin,Joyce,Joyce L.
-Lowe,Jonathan,Jonathan L.
-Lumbra,Kyle,Kyle L.
-Malizia,Nicholas,Nicholas M.
-Mitchell,Ann,Ann M.
-Potere,David,David P.
-Serafin,Adam,Adam S.
-Smirnova,Marina,Marina S.
-Traweek,Sarah,Sarah T.
-Wang,Bill,Bill W.
-Wang,Maria,Maria W.
-Watt,Justine,Justine W.
-Wilson,Kristen,Kristen W.
-Xiang,Yunke,Yunke X.
-Zmijewski,Kirk,Kirk Z.
+lastname,firstname,nickname,email
+Allen,Greg,Greg,Allen.Greg@bcg.com
+Bandte,Oliver,Oliver,Bandte.Oliver@bcg.com
+Benjamin,Max,Max,Benjamin.Max@bcg.com
+Brown,Christopher,Chris,Brown.Christopher@bcg.com
+Butler,Eileen,Eileen,Butler.Eileen@bcg.com
+Chu,Michael,Michael,Chu.Michael@bcg.com
+Colon,Jeremy,Jeremy,Colon.Jeremy@bcg.com
+Consiglio,Davide,Davide,Consiglio.Davide@bcg.com
+Cui,Bo,Bo,boxuancui@gmail.com
+Dinsmore,Thomas,Thomas,Dinsmore.Thomas@bcg.com
+Dixon,Patricia,Trish,Dixon.Patricia@bcg.com
+Erdreich,David,David E.,Erdreich.David@bcg.com
+Gurga,Dawid,Dawid,Gurga.Dawid@bcg.com
+Hua,Guangying,Guangying,Hua.Guangying@bcg.com
+Jaeger,Kristina,Kristina,Jaeger.Kristina@bcg.com
+Jamrich,Jan,Jan,Jamrich.Jan@bcg.com
+Jung,Benjamin,Benjamin,Jung.Benjamin@bcg.com
+Kattamuri,Srinivas,Sri,Kattamuri.Srinivas@bcg.com
+Keezell,John,John,Keezell.John@bcg.com
+Kreider,Tyler,Tyler,Kreider.Tyler@bcg.com
+Kurtzman,Mattew,Matt,Kurtzman.Mattew@bcg.com
+Lagueux,Kerry,Kerry,Lagueux.Kerry@bcg.com
+Lin,Joyce,Joyce,Lin.Joyce@bcg.com
+Lowe,Jonathan,Jonathan,Lowe.Jonathan@bcg.com
+Lumbra,Kyle,Kyle,Lumbra.Kyle@bcg.com
+Malizia,Nicholas,Nick,Malizia.Nicholas@bcg.com
+Margossian,Christa,Christa,Margossian.Christa@bcg.com
+Mitchell,Ann,Ann,Mitchell.Ann@bcg.com
+Potere,David,David P.,Potere.David@bcg.com
+Sanyal,Shayon,Shayon,Sanyal.Shayon@bcg.com
+Serafin,Adam,Adam,Serafin.Adam@bcg.com
+Smirnova,Marina,Marina,Smirnova.Marina@bcg.com
+Suresh,Sajay,Sajay,Suresh.Sajay@bcg.com
+Traweek,Sarah,Sarah,Traweek.Sarah@bcg.com
+Wang,Bill,Bill,Wang.Bill@bcg.com
+Wang,Maria,Maria,Wang.Maria@bcg.com
+Watt,Justine,Justine,Watt.Justine@bcg.com
+Wilson,Kristen,Kristen,Wilson.Kristen@bcg.com
+Xiang,Yunke,Yunke,Xiang.Yunke@bcg.com
+Zmijewski,Kirk,Kirk,Zmijewski.Kirk@bcg.com
